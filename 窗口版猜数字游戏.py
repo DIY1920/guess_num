@@ -119,6 +119,9 @@ class GuessGameGUI:
         self.history.append(f"第 {self.attempts} 次：{guess} -> {count} 位正确")
         self.refresh_history()
 
+        self.entry.delete(0, tk.END)
+        self.entry.focus_set()
+
         if count == 4:
             result_text = f"恭喜！你在 {self.attempts} 次后猜中了！\n最终结果：{count} 个位置正确"
             self.result_var.set(result_text)
