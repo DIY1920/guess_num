@@ -10,24 +10,30 @@ class GuessGameGUI:
         self.root.geometry("420x240")
         self.root.resizable(False, False)
 
+        # 让中文在 Windows 上显示得更稳定
+        self.root.option_add("*Font", "Microsoft YaHei 10")
+        self.root.option_add("*Button*Font", "Microsoft YaHei 10")
+        self.root.option_add("*Label*Font", "Microsoft YaHei 10")
+        self.root.option_add("*Entry*Font", "Microsoft YaHei 10")
+
         self.secret = ""
         self.attempts = 0
 
         # 标题
-        title_label = tk.Label(root, text="4位不重复数字猜谜游戏", font=("Arial", 16, "bold"))
+        title_label = tk.Label(root, text="4位不重复数字猜谜游戏", font=("Microsoft YaHei", 16, "bold"))
         title_label.pack(pady=(20, 10))
 
         # 说明
         rule_label = tk.Label(
             root,
             text="规则：输入4位数字，系统会告诉你有几个位置正确\n数字不能重复，首位不能为0",
-            font=("Arial", 10),
+            font=("Microsoft YaHei", 10),
             justify="center"
         )
         rule_label.pack(pady=(0, 10))
 
         # 输入框
-        self.entry = tk.Entry(root, width=20, font=("Arial", 16), justify="center")
+        self.entry = tk.Entry(root, width=20, font=("Microsoft YaHei", 16), justify="center")
         self.entry.pack(pady=5)
         self.entry.bind("<Return>", lambda event: self.check_guess())
 
@@ -45,7 +51,7 @@ class GuessGameGUI:
         # 结果显示
         self.result_var = tk.StringVar()
         self.result_var.set("游戏已开始")
-        result_label = tk.Label(root, textvariable=self.result_var, font=("Arial", 11), fg="darkblue")
+        result_label = tk.Label(root, textvariable=self.result_var, font=("Microsoft YaHei", 11), fg="darkblue")
         result_label.pack(pady=10)
 
         self.start_new_game()
