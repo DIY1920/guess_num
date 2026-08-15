@@ -29,6 +29,7 @@ class GuessGameGUI:
         # 输入框
         self.entry = tk.Entry(root, width=20, font=("Arial", 16), justify="center")
         self.entry.pack(pady=5)
+        self.entry.bind("<Return>", lambda event: self.check_guess())
 
         # 按钮
         btn_frame = tk.Frame(root)
@@ -36,6 +37,7 @@ class GuessGameGUI:
 
         submit_btn = tk.Button(btn_frame, text="猜一下", command=self.check_guess, width=12, height=2)
         submit_btn.grid(row=0, column=0, padx=10)
+        submit_btn.bind("<Return>", lambda event: self.check_guess())
 
         restart_btn = tk.Button(btn_frame, text="重新开始", command=self.start_new_game, width=12, height=2)
         restart_btn.grid(row=0, column=1, padx=10)
@@ -57,7 +59,7 @@ class GuessGameGUI:
     def start_new_game(self):
         self.secret = self.generate_secret()
         self.attempts = 0
-        self.result_var.set("新游戏开始！请输入4位数字")
+        self.result_var.set("新游戏开始！请输入4位数字，并按 Enter 猜一下")
         self.entry.delete(0, tk.END)
         self.entry.focus()
 
@@ -68,10 +70,7 @@ class GuessGameGUI:
             self.result_var.set("请输入4位数字！")
             return
 
-        if len(set(guess)) != 4:
-            self.result_var.set("数字不能重复！")
-            return
-
+        # 用户输入允许重复数字；只要求是4位数字
         # 计算正确位置数
         count = sum(1 for i in range(4) if guess[i] == self.secret[i])
         self.attempts += 1
