@@ -102,7 +102,7 @@ class GuessGameGUI:
     def refresh_history(self):
         self.history_text.config(state="normal")
         self.history_text.delete("1.0", tk.END)
-        for item in self.history:
+        for item in reversed(self.history):
             self.history_text.insert(tk.END, item + "\n")
         self.history_text.config(state="disabled")
 
@@ -128,7 +128,6 @@ class GuessGameGUI:
             self.result_label.config(fg="green")
             self.root.update_idletasks()
             self.entry.config(state="disabled")
-            self.root.after(1500, self.start_new_game)
         else:
             result_text = f"结果：{count} 个位置正确，已尝试 {self.attempts} 次"
             self.result_var.set(result_text)
