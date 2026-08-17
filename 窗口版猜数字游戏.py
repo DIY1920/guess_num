@@ -83,10 +83,10 @@ class GuessGameGUI:
             textvariable=self.result_var,
             font=self.result_font,
             fg="darkblue",
-            justify="left",
-            wraplength=260,
+            justify="center",
+            wraplength=300,
         )
-        self.result_label.pack(anchor="w", pady=(0, 10))
+        self.result_label.pack(anchor="w", pady=(0, 10), padx=5 )
 
         history_title = tk.Label(right_panel, text="历史记录", font=self.default_font, anchor="w")
         history_title.pack(anchor="w")
@@ -112,7 +112,7 @@ class GuessGameGUI:
         self.attempts = 0
         self.history = []
         self.entry.config(state="normal")
-        self.result_var.set("新游戏开始！请输入4位数字猜测，看你最少能用几次哦~")
+        self.result_var.set("新游戏开始！\n 请输入4位数字，看你最少能用几次猜出答案")
         self.entry.delete(0, tk.END)
         self.entry.focus()
         self.refresh_history()
